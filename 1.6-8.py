@@ -4,7 +4,7 @@ class ExtendedStack(list):
         self.append((self.pop() + self.pop()))
 
     def sub(self):
-        # операция вычитания
+        # операция вычитани
         self.append((self.pop() - self.pop()))
 
     def mul(self):
