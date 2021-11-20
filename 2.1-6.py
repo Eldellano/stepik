@@ -33,4 +33,4 @@ def class_check():  # проверяем соответвие классов
         exc_lst.append(parent)
 
 
-class_check()#
+class_check()
