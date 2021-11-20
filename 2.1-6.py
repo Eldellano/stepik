@@ -1,44 +1,36 @@
 n = int(input())  # число строк
 dictionary = {}  # классы и потомки
 queue_descr = []  # проверка
+exc_lst = []  # Хранение исключений
 for i in range(1, n + 1):
     a, *b = input().replace(":", " ").split()
     dictionary[a] = b
 q = int(input())  # число запросов
 for i in range(1, q + 1):
-    #queue_descr.append(input().split())
     queue_descr.append(input())
-print(dictionary)
-# print(queue_descr)
 
-def find_all_paths(graph, start, end, path=[]):
+
+def find_all_paths(dictionary, start, end, path=[]):
     path = path + [start]
     if start == end:
         return path
     if not dictionary.get(start):
-        return None
+        return []
     for i in dictionary[start]:
         if i not in path:
             newpath = find_all_paths(dictionary, i, end, path)
             if newpath:
                 return newpath
-    return None
+    return []
+
 
 def class_check():  # проверяем соответвие классов
-    for i in queue_descr:
-        child = i  # поменял местами!
-        try:  # избегаем IndexError
-            parent = queue_descr[queue_descr.index(i)+1]
-        except:
-            parent = queue_descr[queue_descr.index(i)]
-        # print(child, parent)
-
-        # if parent == child:
-        #     print('Yes')
-        if find_all_paths(dictionary, child, parent):
-            print(child)
-        # else:
-        #     print('No')
+    for parent in queue_descr:
+        for child in exc_lst:
+            if find_all_paths(dictionary, parent, child):
+                print(parent)
+                break
+        exc_lst.append(parent)
 
 
 class_check()
