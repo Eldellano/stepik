@@ -5,13 +5,14 @@ class NonPositiveError(Exception):
 class PositiveList(list):
     def append(self, x):
         if x > 0:
-            super(PositiveList, self).append(x)
+            super().append(x)
         else:
             raise NonPositiveError()
 
 
 def test():  # Проверка, не отправлять с решением
     lst = PositiveList([1, 2, 3])
+    lst.append(4)
     lst.append(-4)
     print(lst)
 
