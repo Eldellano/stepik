@@ -1,13 +1,19 @@
+class NonPositiveError(Exception):
+    pass
+
+
 class PositiveList(list):
-    def positive_check(self,x):
+    def append(self, x):
         if x > 0:
-            return self.append(x)
+            super(PositiveList, self).append(x)
         else:
             raise NonPositiveError()
 
 
-pl = PositiveList()
-pl.append(1)
-print(pl)  # [1]
-pl.remove(1)
-print(pl)  # []
+def test():  # Проверка, не отправлять с решением
+    lst = PositiveList([1, 2, 3])
+    lst.append(-4)
+    print(lst)
+
+
+test()
