@@ -17,9 +17,8 @@ def decription():
     for i in range(len(password)):
         print(cnt, i)  # Для визуализации процесса перебора
         try:
-            if simplecrypt.decrypt(password[cnt], encrypted):
-                print(simplecrypt.decrypt(password[cnt], encrypted).decode('utf8'))
-                cnt += 1
+            print(simplecrypt.decrypt(password[cnt], encrypted).decode('utf8'))
+            cnt += 1
         except:
             cnt += 1
 
