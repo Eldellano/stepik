@@ -12,3 +12,4 @@ path_lst.sort()
 with open('outfile.txt', 'w') as out_file:
     content = '\n'.join(path_lst)
     out_file.write(content)
+
