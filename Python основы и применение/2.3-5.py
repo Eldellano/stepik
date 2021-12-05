@@ -1,3 +1,4 @@
+# import itertools
 def primes():
     i = 2
     while True:
@@ -22,12 +23,7 @@ yo = primes()
 for i in range(31):
     print(next(yo))
 
-"""
-В Pycharm код выполняется не правильно, при yo = primes() for i in range(31): print(next(yo)) выводит числа до 127, 
-пытаясь найти ошибку запустил код в pythontutor, и там вывод был как и положено до 31 числа. Отправил решение на степик, 
-и оно было принято. В чем проблема неверного поведения кода при запуске в Pycharm я так и не могу понять. 
-Напишите пожалуйста, если понимаете что здесь не так. 
-"""
+# print(list(itertools.takewhile(lambda x: x <= 31, primes())))
 
 
 
