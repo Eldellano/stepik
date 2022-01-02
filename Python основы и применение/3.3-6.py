@@ -3,18 +3,34 @@ import re
 
 url_a = input()
 url_b = input()
-pattern = r'sample\d'
+pattern = r'<a.*?href="([^"]*)'
+lst = []
 
-res_a = requests.get(url_a)
-res_b = requests.get(url_b)
-match_a = re.findall(pattern, str(res_a.content))
-match_b_cont = re.search(pattern, str(res_b.content))
-match_b = re.search(pattern, str(url_b))
 
-for i in match_a:
-    if i != match_b.group() or match_b.group() == match_b_cont.group():
-        print('Yes')
-    # elif match_b.group() == match_b_cont.group():
-    #     print('Yes')
-    else:
-        print('No')
+def get_link(url):
+    try:
+        if requests.get(url).status_code == 200:
+            res = requests.get(url)
+            lst = re.findall(pattern, str(res.content))
+            if len(lst) > 0:
+                return lst
+            else:
+                return []
+    except:
+        return []
+
+
+def get_link_full():
+    lst_link = get_link(url_a)
+    for i in lst_link:
+        if requests.get(i).status_code == 200:
+            lst_full_link = get_link(i)
+            if url_b in lst_full_link:
+                return True
+    return False
+
+
+if get_link_full():
+    print('Yes')
+else:
+    print('No')
