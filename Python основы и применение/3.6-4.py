@@ -14,8 +14,8 @@ def count_color(i, level):
     for value in branch.values():
         level += 1
         color[value] += level
-        for j in i:
-            count_color(j, level)
+    for j in i:
+        count_color(j, level)
 
 
 for i in tree:
