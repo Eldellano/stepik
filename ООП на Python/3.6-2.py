@@ -1,0 +1,37 @@
+"""
+ Создайте класс City, у которого есть:
+* конструктор __init__, принимающий единственный аргумент - название города. Вам необходимо сохранить его в качестве атрибута экземпляра name,
+причем вам нужно преобразовать переданное имя города таким образом, чтобы первая буква каждого слова была заглавной, а остальные оказались
+строчными (пример "new york" - > "New York")
+* переопределить метод __str__ таким образом, чтобы он возвращал имя города
+* переопределить метод __bool__ так, чтобы он возвращал False ,если название города заканчивается на любую гласную букву латинского алфавита
+(a, e, i, o, u), в противном случае True
+"""
+
+
+class City:
+    def __init__(self, name):
+        self.name = ''
+        cnt = 1
+        for i in name.lower().split(' '):
+            self.name += (i[0].upper() + i[1:])
+            if len(name.lower().split(' ')) > 1 and cnt < len(name.lower().split(' ')):
+                self.name += ' '
+                cnt += 1
+
+    def __str__(self):
+        return self.name
+
+    def __bool__(self):
+        if not self.name[-1] in ['a', 'e', 'i', 'o', 'u']:
+            return True
+        else:
+            return False
+
+
+p1 = City('new york')
+print(p1)  # печатает "New York"
+print(bool(p1))  # печатает "True"
+p2 = City('SaN frANCISco')
+print(p2)  # печатает "San Francisco"
+print(p2 == True)  # печатает "False"
