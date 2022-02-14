@@ -11,13 +11,7 @@
 
 class City:
     def __init__(self, name):
-        self.name = ''
-        cnt = 1
-        for i in name.lower().split(' '):
-            self.name += (i[0].upper() + i[1:])
-            if len(name.lower().split(' ')) > 1 and cnt < len(name.lower().split(' ')):
-                self.name += ' '
-                cnt += 1
+        self.name = name.title()
 
     def __str__(self):
         return self.name
